@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <ImageView
+        android:id="@+id/movie_img"
+        android:layout_width="65dp"
+        android:layout_height="105dp"
+        android:cropToPadding="true"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <CheckBox
+        android:id="@+id/fav"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:button="@drawable/fav_selector"
+        android:padding="8dp"
+        app:layout_constraintLeft_toRightOf="@+id/movie_img"
+        app:layout_constraintTop_toTopOf="@+id/movie_img" />
+
+    <TextView
+        android:id="@+id/movie_title"
+        style="@style/TextAppearance.AppCompat.Large"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="8dp"
+        app:layout_constraintLeft_toRightOf="@+id/fav"
+        app:layout_constraintTop_toTopOf="@+id/movie_img"
+        tools:text="Title" />
+
+    <TextView
+        android:id="@+id/movie_description"
+        style="@style/TextAppearance.AppCompat.Medium"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingStart="8dp"
+        android:paddingEnd="8dp"
+        app:layout_constraintLeft_toRightOf="@+id/movie_img"
+        app:layout_constraintTop_toBottomOf="@+id/movie_title"
+        tools:text="Description" />
+
+    <TextView
+        android:id="@+id/movie_rel_date"
+        style="@style/TextAppearance.AppCompat.Small"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingStart="8dp"
+        android:paddingEnd="8dp"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/movie_description"
+        tools:text="12-13-2019" />
+</androidx.constraintlayout.widget.ConstraintLayout>
