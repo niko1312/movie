@@ -11,8 +11,8 @@ import io.reactivex.schedulers.Schedulers
 
 class DetailsInteractor(private var apiService: ApiService, private var moviesDao: MoviesDao) {
 
-    fun fetchMoviesById(moviewId: Int): Single<MovieModel> {
-        return Single.zip(apiService.getMovieById(moviewId, Prefs.getKey()),
+    fun fetchMoviesById(moviewId: Int): Single<MovieModel> =
+        Single.zip(apiService.getMovieById(moviewId, Prefs.getKey()),
             moviesDao.getMovieById(moviewId),
             BiFunction<MovieModel, MovieModel, MovieModel> { remoteModel, cachedModel ->
                 remoteModel.isFav = cachedModel.isFav
@@ -20,7 +20,9 @@ class DetailsInteractor(private var apiService: ApiService, private var moviesDa
             })
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
-    }
 
-    fun updateMovie(movieId: Int, fav: Boolean) = Single.just(moviesDao.updateMovie(movieId, fav))
+    fun updateMovie(movieId: Int, fav: Boolean) = Single.just(moviesDao)
+        .map { it.updateMovie(movieId, fav) }
+        .subscribeOn(Schedulers.io())
+        .observeOn(AndroidSchedulers.mainThread())
 }

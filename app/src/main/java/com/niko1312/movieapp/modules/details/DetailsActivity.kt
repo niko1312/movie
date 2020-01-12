@@ -48,7 +48,7 @@ class DetailsActivity : DaggerAppCompatActivity() {
 
         }
 
-        fav.setOnClickListener { detailsActivityViewModel.updateMovieFav(1, false) }
+        fav.setOnClickListener { detailsActivityViewModel.updateMovieFav(movieId, false) }
 
     }
 }

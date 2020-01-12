@@ -21,17 +21,10 @@ class MovieApp : DaggerApplication() {
     }
 
     companion object {
-
         @Volatile
         private lateinit var instance: MovieApp
 
         fun getInstance(): MovieApp {
-//            if (instance == null) {
-//                synchronized(MovieApp::class.java) {
-//                    if (instance == null)
-//                        instance = MovieApp()
-//                }
-//            }
             return instance
         }
     }

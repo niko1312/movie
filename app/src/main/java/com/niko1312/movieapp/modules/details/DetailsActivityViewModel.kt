@@ -3,9 +3,7 @@ package com.niko1312.movieapp.modules.details
 import androidx.lifecycle.ViewModel
 import com.niko1312.movieapp.modules.main.models.MovieModel
 import com.niko1312.movieapp.util.ConsumerFunc
-import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
-import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
 class DetailsActivityViewModel @Inject constructor(
@@ -22,9 +20,11 @@ class DetailsActivityViewModel @Inject constructor(
         )
     }
 
-    fun updateMovieFav(movieId: Int, isFav: Boolean) =
-        interactor.updateMovie(movieId, isFav)
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
+    fun updateMovieFav(movieId: Int, isFav: Boolean) {
+        compositeDisposable.add(
+            interactor.updateMovie(movieId, isFav)
+                .subscribe()
+        )
+    }
 
 }
